@@ -9,8 +9,9 @@ function Toolbar() {
     const [uuid,setuuId] = useState(0);
     
     const initialTextBox = {
-        id: id.toString(),
         uuid,
+        type: 'textbox',
+        id: id.toString(),
         name: '',
         className: '',
         value: '',
@@ -21,16 +22,17 @@ function Toolbar() {
     }
 
     const initialCheckBox = {
-        id: id.toString(),
         uuid,
+        type: 'checkbox',
+        id: id.toString(),
         labelPosition: 'right',
         label: '',
         description: '',
         checked: false,
-        color: 'grape',
+        color: 100,
         disabled: false,
         radius: 'md',
-        size: 'lg',
+        size: 'md',
         focus: false
     };
 

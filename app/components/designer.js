@@ -8,52 +8,36 @@ import { MdOutlineDeleteForever } from "react-icons/md";
 function Designer() {
   const [TextBox, setTextBox] = useRecoilState(AddTextBox);
   const [CheckBox, setCheckBox] = useRecoilState(AddCheckBox);
+  let mergeObjects = [...TextBox,...CheckBox];
 
-  const handleChangeText = (e, i) => {
-    const finalValue = TextBox.map((c, index) => {
+  var itemType = null;
+
+  const handleChange = (e, i, target) => {
+    const finalValue = mergeObjects.map((c, index) => {
       if (index === i) {
-        return { ...c, value: e };
+        return { ...c, [target]: e };
       } else {
         return c;
       }
     });
-    setTextBox(finalValue);
+      setTextBox(finalValue.filter(e => e.type === 'textbox'));
+      setCheckBox(finalValue.filter(e => e.type === 'checkbox'));
+      mergeObjects = finalValue;
   };
 
-  const handleChangeCheck = (e, i) => {
-    const finalValue = CheckBox.map((c, index) => {
-      if (index === i) {
-        console.log(c);
-        return { ...c, checked: e };
-      } else {
-        return c;
-      }
-    });
-    setCheckBox(finalValue);
-  };
-
-  const handleFocusInText = (i) => {
-    const finalValue = TextBox.map((c, index) => {
+  const handleFocus = (i) => {
+    const finalValue = mergeObjects.map((c, index) => {
       if (index === i) {
         return { ...c, focus: true };
       } else {
-        return { ...c, focus: false };;
+        return { ...c, focus: false };
       }
     });
-    setTextBox(finalValue);
+      setTextBox(finalValue.filter(e => e.type === 'textbox'));
+      setCheckBox(finalValue.filter(e => e.type === 'checkbox'));
+      mergeObjects = finalValue;
   };
-
-  const handleFocusInCheck = (i) => {
-    const finalValue = CheckBox.map((c, index) => {
-      if (index === i) {
-        return { ...c, focus: true };
-      } else {
-        return { ...c, focus: false };;
-      }
-    });
-    setCheckBox(finalValue);
-  };
-
+ 
   const handleDeleteText = (i) => {
     setTextBox((rest) => rest.filter((c, index) => index !== i));
   };
@@ -69,62 +53,45 @@ function Designer() {
           flexDirection: "row-reverse",
         }}
       >
-        {TextBox.map((x, i) => (
-          <div
-            key={i}
-            style={{
-              width: "50%",
-              margin: "0.5rem 0",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <div style={{ padding: "0 0.6rem" }}>{x.label}</div>
-            <DisplayIcon
-              onChange={(e) => handleChangeText(e.target.value, i)}
-              className={x.className}
-              value={x.value}
-              id={x.id}
-              required={x.required}
-              disabled={x.disabled}
-              onFocus={() => handleFocusInText(i)}
-              styles={{ input:x.focus ? { outline: "1px solid #1971c2 !important" } : { outlineWidth: "0" }}}
-              rightSection={
-                <ActionIcon onClick={() => handleDeleteText(i)}>
-                  <MdOutlineDeleteForever color="red" />
-                </ActionIcon>
-              }
-            />
-          </div>
-        ))}
-        {CheckBox.map((x, i) => (
-          <div
-            key={i}
-            style={{
-              width: "50%",
-              margin: "0.5rem 0",
-              display: "flex",
-              alignItems: "center",
-              justifyContent:"center"
-            }}
-          >
-            <div style={{ padding: "0 0.6rem" }}>{x.label}</div>
-            <Switch
-              onChange={(e) => handleChangeCheck(e.currentTarget.checked, i)}
-              color={x.color}
-              id={x.id}
-              labelPosition= {x.labelPosition}
-              label= {x.label}
-              description= {x.description}
-              checked = {x.checked}
-              disabled= {x.disabled}
-              radius= {x.radius}
-              size= {x.size}
-              onFocus={() => handleFocusInCheck(i)}
-              styles={{track:x.focus ? {border:"0.2rem solid #1971c2 !important"} : {outlineWidth:0}}}
-            />
-          </div>
-        ))}
+        {mergeObjects.sort((a,b) => a.uuid - b.uuid).map((c,i)=>(
+          <div key={i} style={{width: "50%",margin: "0.5rem 0",display: "flex",alignItems: "center"}}> 
+            {c.type === "textbox"?
+              <div style={{width:"100%"}}>
+                <div style={{ padding: "0 0.6rem" }}>{c.label}</div>
+                <DisplayIcon
+                  onChange={(e) => handleChange(e.target.value, i,itemType="value")}
+                  className={c.className}
+                  value={c.value}
+                  id={c.id}
+                  required={c.required}
+                  disabled={c.disabled}
+                  onClick={() => handleFocus(i)}
+                  styles={{ input:c.focus ? { outline: "1px solid #1971c2 !important" } : { outlineWidth: "0" }}}
+                  rightSection={
+                    <ActionIcon onClick={() => handleDeleteText(i)}>
+                      <MdOutlineDeleteForever color="red" style={{height:"1.3rem",width:"1.3rem"}} />
+                    </ActionIcon>
+                  }
+                />
+           </div>
+           :
+            <div style={{width:"100%",display:"flex",justifyContent:"center",alignItems:"center"}}>
+                  <Switch
+                    onChange={(e) => handleChange(e.currentTarget.checked, i, itemType="checked")}
+                    id={c.id}
+                    labelPosition= {c.labelPosition}
+                    label= {c.label}
+                    description= {c.description}
+                    checked = {c.checked}
+                    disabled= {c.disabled}
+                    radius= {c.radius}
+                    size= {c.size}
+                    onClick={() => handleFocus(i)}
+                    styles={{track:c.focus ? {border:"0.15rem solid #1971c2 !important",backgroundColor:`${c.checked ? c.color : "#000"} !important`}:{outlineWidth:0,backgroundColor:`${c.checked ? c.color : "#000"} !important`}}}
+                  />
+                </div>}
+               </div>
+            ))}
       </div>
     </div>
   );
