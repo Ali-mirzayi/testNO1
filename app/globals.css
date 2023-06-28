@@ -25,3 +25,24 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+h1{
+  font-size: 1.7rem;
+}
+
+.mantine-1a5b1k{
+  pointer-events: unset;
+}
+
+.propertyContainer{
+  border:1px solid white;
+  display:flex;
+  align-items: center;
+}
+
+.propertyKey{
+  width:40%;
+  border-right:1px solid white;
+  height:2.25rem;
+  line-height:2.25rem;
+}
