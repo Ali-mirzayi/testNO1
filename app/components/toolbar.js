@@ -16,6 +16,7 @@ function Toolbar() {
         className: '',
         value: '',
         label: '',
+        color: "#25262b",
         disabled: false,
         required: false,
         focus: false
@@ -29,7 +30,7 @@ function Toolbar() {
         label: '',
         description: '',
         checked: false,
-        color: 100,
+        color: "#0c8599",
         disabled: false,
         radius: 'md',
         size: 'md',
@@ -37,28 +38,47 @@ function Toolbar() {
     };
 
     const addTextBox = useSetRecoilState(AddTextBox);
+    const addCheckBox = useSetRecoilState(AddCheckBox);
+
     const AddBox = () => {
         addTextBox(rest=>[...rest,initialTextBox]);
         setId(e=>e+=1);
         setuuId(e=>e+=1);
     };
 
-    const addCheckBox = useSetRecoilState(AddCheckBox);
     const AddCheck = () => {
         addCheckBox(rest=>[...rest,initialCheckBox]);
         setId(e=>e+=1);
         setuuId(e=>e+=1);
     };
 
+
+    function Enable(){
+        addTextBox(rest=>rest.map((e)=>{
+                if(e.disabled===true){
+                    return {...e,disabled:false}
+                }else{
+                    return e
+                }}))
+        addCheckBox(rest=>rest.map((e)=>{
+                if(e.disabled===true){
+                    return {...e,disabled:false}
+                }else{
+                    return e
+                }}))
+    };
+
     return ( <section>
         <h1 className='my-1 text-center cursor-pointer'>Toolbar</h1>
         <Divider color="white" />
-        <div className='my-7 text-center'>
-           <div style={{cursor:"pointer"}} onClick={AddBox}>Text Box</div>
+        <div className='my-5 text-center'>
+           <div className='btntools' onClick={AddBox}>Text Box</div>
         </div>
-        <Divider color="white" />
-        <div className='my-7 text-center'>
-           <div style={{cursor:"pointer"}} onClick={AddCheck}>Check Box</div>
+        <div className='my-5 text-center'>
+           <div className='btntools' onClick={AddCheck}>Check Box</div>
+        </div>
+        <div className='my-5 text-center'>
+           <div className='btntools' onClick={Enable} style={{backgroundColor:"#00485c !important"}}>Enable All</div>
         </div>
     </section> );
 }

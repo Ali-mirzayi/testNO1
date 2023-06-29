@@ -66,7 +66,7 @@ function Designer() {
                   required={c.required}
                   disabled={c.disabled}
                   onClick={() => handleFocus(i)}
-                  styles={{ input:c.focus ? { outline: "1px solid #1971c2 !important" } : { outlineWidth: "0" }}}
+                  styles={{ input:c.focus ? { outline: "1px solid #1971c2 !important",backgroundColor:c.color } : { outlineWidth: "0",backgroundColor:c.color }}}
                   rightSection={
                     <ActionIcon onClick={() => handleDeleteText(i)}>
                       <MdOutlineDeleteForever color="red" style={{height:"1.3rem",width:"1.3rem"}} />

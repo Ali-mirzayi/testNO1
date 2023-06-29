@@ -1,5 +1,5 @@
 "use client"
-import { TextInput,Switch } from '@mantine/core'
+import { TextInput,Switch, ColorPicker } from '@mantine/core'
 import { useRecoilState } from "recoil";
 import { AddTextBox } from "../store";
 import { useState,useEffect } from "react";
@@ -28,6 +28,12 @@ export default function TextProperty() {
         setTextBox(finalValue);
     },[getter]);
     
+    function Delete(){
+        const finalValue = TextBox.filter(e=>{
+            return e.uuid!==selectedTextBox.uuid
+        })
+        setTextBox(finalValue);
+    };
 
   return (
     <div>
@@ -63,6 +69,17 @@ export default function TextProperty() {
                    <Switch onChange={(e)=>mutaded(e.currentTarget.checked,target='disabled')} checked={selectedTextBox?.disabled} size="lg" radius="md" color="red" onLabel="ON" offLabel="OFF" style={{margin:"0 0.5rem"}} />
                 </div>
             </div>
+            <div className="propertyContainer">
+        <div className="propertyKey">
+          <p style={{ paddingLeft: "0.3rem" }}>Color</p>
+        </div>
+        <div style={{ width: "100%" }}>
+          <ColorPicker onChangeEnd={(val) => mutaded(val, (target = "color"))} size="sm" style={{ width: "100%" }} />
+        </div>
+      </div>
+        <div onClick={Delete} style={{cursor:"pointer",backgroundColor:"red",width:"90%",height:"50px",margin:"10px auto",borderRadius:"5px",display:"flex",justifyContent:"center",alignItems:"center"}}>
+            <p style={{textAlign:"center",fontWeight:500,fontSize:"1.3rem"}}>DELETE ITEM</p>
+        </div>
     </div>
   )
 }

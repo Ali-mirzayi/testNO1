@@ -1,21 +1,7 @@
-import {
-  TextInput,
-  Switch,
-  Slider,
-  ColorPicker,
-  HueSlider,
-} from "@mantine/core";
+import {TextInput,Switch,SegmentedControl  ,ColorPicker} from "@mantine/core";
 import { useRecoilState } from "recoil";
 import { AddCheckBox } from "../store";
 import { useState, useEffect } from "react";
-
-const MARKS = [
-  { value: 0, label: "xs" },
-  { value: 25, label: "sm" },
-  { value: 50, label: "md" },
-  { value: 75, label: "lg" },
-  { value: 100, label: "xl" },
-];
 
 export default function CheckProperty() {
   const [CheckBox, setCheckBox] = useRecoilState(AddCheckBox);
@@ -23,25 +9,21 @@ export default function CheckProperty() {
   const [getter, setter] = useState(selectedCheckBox);
   var target = null;
 
+  const data=[
+    { label: 'xs', value: 'xs' },
+    { label: 'sm', value: 'sm' },
+    { label: 'md', value: 'md' },
+    { label: 'lg', value: 'lg' },
+    { label: 'xl', value: 'xl' }
+  ];
+
+
   function mutaded(e, c) {
-    console.log({ [c]: e });
     setter({
       ...selectedCheckBox,
       [c]: e,
     });
-    console.log(getter);
   }
-
-  // console.log(MARKS.find((e)=>e.value===50).label);
-
-  // function xxx (e) {
-  //   console.log(MARKS.find((ree)=>ree.value===e).label);
-  //   setter({
-  //     ...selectedCheckBox,
-  //     size: MARKS.find((ree)=>ree.value===e).label
-  // });
-  // console.log(getter);
-  // }
 
   useEffect(() => {
     const finalValue = CheckBox.map((c) => {
@@ -54,55 +36,39 @@ export default function CheckProperty() {
     setCheckBox(finalValue);
   }, [getter]);
 
+  function Delete(){
+    const finalValue = CheckBox.filter(e=>{
+        return e.uuid!==selectedCheckBox.uuid
+    })
+    setCheckBox(finalValue);
+};
+
   return (
     <div>
       <div className="propertyContainer">
         <div className="propertyKey">
           <p style={{ paddingLeft: "0.3rem" }}>ID</p>
         </div>
-        <TextInput
-          onChange={(e) => mutaded(e.target.value, (target = "id"))}
-          value={selectedCheckBox?.id}
-          style={{ width: "100%" }}
-        />
+        <TextInput onChange={(e) => mutaded(e.target.value, (target = "id"))} value={selectedCheckBox?.id} style={{ width: "100%" }} />
       </div>
       <div className="propertyContainer">
         <div className="propertyKey">
           <p style={{ paddingLeft: "0.3rem" }}>Label</p>
         </div>
-        <TextInput
-          onChange={(e) => mutaded(e.target.value, (target = "label"))}
-          value={selectedCheckBox?.label}
-          style={{ width: "100%" }}
-        />
+        <TextInput onChange={(e) => mutaded(e.target.value, (target = "label"))} value={selectedCheckBox?.label} style={{ width: "100%" }} />
       </div>
       <div className="propertyContainer">
         <div className="propertyKey">
           <p style={{ paddingLeft: "0.3rem" }}>Descrip</p>
         </div>
-        <TextInput
-          onChange={(e) => mutaded(e.target.value, (target = "description"))}
-          value={selectedCheckBox?.description}
-          style={{ width: "100%" }}
-        />
+        <TextInput onChange={(e) => mutaded(e.target.value, (target = "description"))} style={{ width: "100%" }} />
       </div>
       <div className="propertyContainer">
         <div className="propertyKey">
           <p style={{ paddingLeft: "0.3rem" }}>CHECK</p>
         </div>
         <div style={{ width: "100%" }}>
-          <Switch
-            onChange={(e) =>
-              mutaded(e.currentTarget.checked, (target = "checked"))
-            }
-            checked={selectedCheckBox?.checked}
-            size="lg"
-            radius="md"
-            color="red"
-            onLabel="ON"
-            offLabel="OFF"
-            style={{ margin: "0 0.5rem" }}
-          />
+          <Switch onChange={(e) => mutaded(e.currentTarget.checked, (target = "checked")) } checked={selectedCheckBox?.checked} size="lg" radius="md" color="red" onLabel="ON" offLabel="OFF" style={{ margin: "0 0.5rem" }}/>
         </div>
       </div>
       <div className="propertyContainer">
@@ -110,11 +76,7 @@ export default function CheckProperty() {
           <p style={{ paddingLeft: "0.3rem" }}>Color</p>
         </div>
         <div style={{ width: "100%" }}>
-          <ColorPicker
-            onChangeEnd={(val) => mutaded(val, (target = "color"))}
-            size="sm"
-            style={{ width: "100%" }}
-          />
+          <ColorPicker onChangeEnd={(val) => mutaded(val, (target = "color"))} size="sm" style={{ width: "100%" }} />
         </div>
       </div>
       <div className="propertyContainer">
@@ -141,20 +103,7 @@ export default function CheckProperty() {
           <p style={{ paddingLeft: "0.3rem" }}>Radius</p>
         </div>
         <div style={{ width: "100%" }}>
-          <Slider
-            onChangeEnd={(val) =>
-              mutaded(
-                MARKS.find((mark) => mark.value === val).label,
-                (target = "radius")
-              )
-            }
-            label={(val) => MARKS.find((mark) => mark.value === val).label}
-            defaultValue={50}
-            step={25}
-            marks={MARKS}
-            styles={{ markLabel: { display: "none" } }}
-            style={{ margin: "auto", width: "85%" }}
-          />
+          <SegmentedControl data={data} onChange={value=>mutaded(value,target='radius')} style={{width:"100%"}} />
         </div>
       </div>
       <div className="propertyContainer">
@@ -162,23 +111,12 @@ export default function CheckProperty() {
           <p style={{ paddingLeft: "0.3rem" }}>Size</p>
         </div>
         <div style={{ width: "100%" }}>
-          <Slider
-            // onChangeEnd={(val)=>xxx(val)}
-            onChangeEnd={(val) =>
-              mutaded(
-                MARKS.find((mark) => mark.value === val).label,
-                (target = "size")
-              )
-            }
-            label={(val) => MARKS.find((mark) => mark.value === val).label}
-            defaultValue={50}
-            step={25}
-            marks={MARKS}
-            styles={{ markLabel: { display: "none" } }}
-            style={{ margin: "auto", width: "85%" }}
-          />
+          <SegmentedControl data={data} onChange={value=>mutaded(value,target='size')} style={{width:"100%"}} />
         </div>
       </div>
+      <div onClick={Delete} style={{cursor:"pointer",backgroundColor:"red",width:"90%",height:"50px",margin:"10px auto",borderRadius:"5px",display:"flex",justifyContent:"center",alignItems:"center"}}>
+            <p style={{textAlign:"center",fontWeight:500,fontSize:"1.3rem"}}>DELETE ITEM</p>
+        </div>
     </div>
   );
 }

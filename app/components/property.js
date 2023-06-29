@@ -14,8 +14,7 @@ function Property() {
     return ( <div>
         <h1 className='my-1 text-center cursor-pointer'>Property</h1>
         <Divider color="white" className="mt-1"/>
-        <CheckProperty />
-        {/* {typeSelected==='textbox' ? <TextProperty /> : typeSelected==='checkbox' ? <CheckProperty /> : <div style={{width:"100%",height:"300px",display:"flex",justifyContent:"center",alignItems:"center",fontSize:"1.2rem",flexDirection:"column"}}><p>undifined</p><p>pls select some box</p></div>} */}
+        {typeSelected==='textbox' ? <TextProperty /> : typeSelected==='checkbox' ? <CheckProperty /> : <div style={{width:"100%",height:"300px",display:"flex",justifyContent:"center",alignItems:"center",fontSize:"1.2rem",flexDirection:"column"}}><p>undifined</p><p>pls select some box</p></div>}
     </div> );
 }
 
