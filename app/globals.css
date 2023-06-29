@@ -2,32 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
 body {
-  color: rgb(var(--foreground-rgb));
-  background: #151515;
+  color: rgb(0, 0, 0);
+  background: #959595;
   overflow-x: hidden;
 }
 
 .btntools{
-  background-color: #3e3e3e;
+  background-color: #606461;
+  color: white;
   cursor: pointer;
   width: 85%;
   margin: 3px auto;
   padding: 1px 3px;
+  border-radius: 3px;
 }
 
 h1{
@@ -39,14 +27,14 @@ h1{
 }
 
 .propertyContainer{
-  border:1px solid white;
+  border:1px solid #606461;
   display:flex;
   align-items: center;
 }
 
 .propertyKey{
   width:40%;
-  border-right:1px solid white;
+  border-right:1px solid rgb(255, 255, 255);
   height:2.25rem;
   line-height:2.25rem;
 }

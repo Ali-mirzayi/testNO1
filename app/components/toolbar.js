@@ -16,7 +16,7 @@ function Toolbar() {
         className: '',
         value: '',
         label: '',
-        color: "#25262b",
+        color: "#e1e1e1",
         disabled: false,
         required: false,
         focus: false
@@ -69,8 +69,7 @@ function Toolbar() {
     };
 
     return ( <section>
-        <h1 className='my-1 text-center cursor-pointer'>Toolbar</h1>
-        <Divider color="white" />
+        <h1 style={{backgroundColor:"#606461",color:"white",textAlign:"center"}}>Toolbar</h1>
         <div className='my-5 text-center'>
            <div className='btntools' onClick={AddBox}>Text Box</div>
         </div>

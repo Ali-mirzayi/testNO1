@@ -9,18 +9,18 @@ export default function Home() {
     <main>
       <div className="flex">
         <div
-          style={{ border: "1px solid white", width: "10%", height: "130vh" }}
+          style={{ border: "1px solid #606461", width: "10%", height: "130vh" }}
         >
           <Toolbar />
         </div>
         <div
-          style={{ border: "1px solid white", width: "68%", height: "130vh" }}
+          style={{ border: "1px solid #606461", width: "68%", height: "130vh" }}
         >
           <Designer />
           <Json />
         </div>
         <div
-          style={{ border: "1px solid white", width: "22%", height: "130vh" }}
+          style={{ border: "1px solid #606461", width: "22%", height: "130vh" }}
         >
           <Property />
         </div>

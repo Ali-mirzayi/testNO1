@@ -49,19 +49,19 @@ export default function CheckProperty() {
         <div className="propertyKey">
           <p style={{ paddingLeft: "0.3rem" }}>ID</p>
         </div>
-        <TextInput onChange={(e) => mutaded(e.target.value, (target = "id"))} value={selectedCheckBox?.id} style={{ width: "100%" }} />
+        <TextInput radius="xs" onChange={(e) => mutaded(e.target.value, (target = "id"))} value={selectedCheckBox?.id} style={{ width: "100%" }} />
       </div>
       <div className="propertyContainer">
         <div className="propertyKey">
           <p style={{ paddingLeft: "0.3rem" }}>Label</p>
         </div>
-        <TextInput onChange={(e) => mutaded(e.target.value, (target = "label"))} value={selectedCheckBox?.label} style={{ width: "100%" }} />
+        <TextInput radius="xs" onChange={(e) => mutaded(e.target.value, (target = "label"))} value={selectedCheckBox?.label} style={{ width: "100%" }} />
       </div>
       <div className="propertyContainer">
         <div className="propertyKey">
           <p style={{ paddingLeft: "0.3rem" }}>Descrip</p>
         </div>
-        <TextInput onChange={(e) => mutaded(e.target.value, (target = "description"))} style={{ width: "100%" }} />
+        <TextInput radius="xs" onChange={(e) => mutaded(e.target.value, (target = "description"))} style={{ width: "100%" }} />
       </div>
       <div className="propertyContainer">
         <div className="propertyKey">
@@ -72,7 +72,7 @@ export default function CheckProperty() {
         </div>
       </div>
       <div className="propertyContainer">
-        <div className="propertyKey">
+        <div className="propertyKey" style={{borderRightWidth:0}}>
           <p style={{ paddingLeft: "0.3rem" }}>Color</p>
         </div>
         <div style={{ width: "100%" }}>
@@ -99,15 +99,15 @@ export default function CheckProperty() {
         </div>
       </div>
       <div className="propertyContainer">
-        <div className="propertyKey">
+        <div className="propertyKey" style={{borderRightWidth:0}}>
           <p style={{ paddingLeft: "0.3rem" }}>Radius</p>
         </div>
         <div style={{ width: "100%" }}>
           <SegmentedControl data={data} onChange={value=>mutaded(value,target='radius')} style={{width:"100%"}} />
         </div>
       </div>
-      <div className="propertyContainer">
-        <div className="propertyKey">
+      <div className="propertyContainer" style={{borderBottomWidth:"2px"}}>
+        <div className="propertyKey" style={{borderRightWidth:0}}>
           <p style={{ paddingLeft: "0.3rem" }}>Size</p>
         </div>
         <div style={{ width: "100%" }}>
@@ -115,7 +115,7 @@ export default function CheckProperty() {
         </div>
       </div>
       <div onClick={Delete} style={{cursor:"pointer",backgroundColor:"red",width:"90%",height:"50px",margin:"10px auto",borderRadius:"5px",display:"flex",justifyContent:"center",alignItems:"center"}}>
-            <p style={{textAlign:"center",fontWeight:500,fontSize:"1.3rem"}}>DELETE ITEM</p>
+            <p style={{textAlign:"center",fontWeight:500,fontSize:"1.3rem",color:"white"}}>DELETE ITEM</p>
         </div>
     </div>
   );

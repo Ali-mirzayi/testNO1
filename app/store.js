@@ -16,7 +16,7 @@ const AddCheckBox = atom({
 export default function Store({ children }) {
   return (
     <RecoilRoot>
-      <MantineProvider theme={{ colorScheme: "dark" }}>
+      <MantineProvider theme={{ colorScheme: "light" }}>
         {children}
       </MantineProvider>
     </RecoilRoot>

@@ -44,8 +44,7 @@ function Designer() {
 
   return (
     <div style={{ height: "65%" }}>
-      <h1 className="my-1 text-center cursor-pointer">Designer</h1>
-      <Divider color="white"/>
+      <h1 style={{backgroundColor:"#606461",color:"white",textAlign:"center"}}>Designer</h1>
       <div
         style={{
           display: "flex",
@@ -66,10 +65,10 @@ function Designer() {
                   required={c.required}
                   disabled={c.disabled}
                   onClick={() => handleFocus(i)}
-                  styles={{ input:c.focus ? { outline: "1px solid #1971c2 !important",backgroundColor:c.color } : { outlineWidth: "0",backgroundColor:c.color }}}
+                  styles={{ input:c.focus ? { outline: "2.5px solid #1971c2 !important",backgroundColor:c.color } : { outlineWidth: "0",backgroundColor:c.color }}}
                   rightSection={
                     <ActionIcon onClick={() => handleDeleteText(i)}>
-                      <MdOutlineDeleteForever color="red" style={{height:"1.3rem",width:"1.3rem"}} />
+                      <MdOutlineDeleteForever color="red" style={{height:"2rem",width:"1.3rem"}} />
                     </ActionIcon>
                   }
                 />
@@ -87,7 +86,7 @@ function Designer() {
                     radius= {c.radius}
                     size= {c.size}
                     onClick={() => handleFocus(i)}
-                    styles={{track:c.focus ? {border:"0.15rem solid #1971c2 !important",backgroundColor:`${c.checked ? c.color : "#000"} !important`}:{outlineWidth:0,backgroundColor:`${c.checked ? c.color : "#000"} !important`}}}
+                    styles={{track:c.focus ? {border:"0.23rem solid #1971c2 !important",backgroundColor:`${c.checked ? c.color : "#606461"} !important`}:{outlineWidth:0,backgroundColor:`${c.checked ? c.color : "#606461"} !important`}}}
                   />
                 </div>}
                </div>
