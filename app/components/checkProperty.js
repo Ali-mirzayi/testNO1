@@ -1,12 +1,14 @@
 import {TextInput,Switch,SegmentedControl  ,ColorPicker} from "@mantine/core";
-import { useRecoilState } from "recoil";
-import { AddCheckBox } from "../store";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { AddCheckBox, PropertyCheck, DeleteCheck } from "../store";
 import { useState, useEffect } from "react";
 
 export default function CheckProperty() {
   const [CheckBox, setCheckBox] = useRecoilState(AddCheckBox);
   const selectedCheckBox = CheckBox.filter((c) => c.focus === true)[0];
   const [getter, setter] = useState(selectedCheckBox);
+  const setCount = useSetRecoilState(PropertyCheck);
+  const DelCount = useSetRecoilState(DeleteCheck);
   var target = null;
 
   const data=[
@@ -34,13 +36,15 @@ export default function CheckProperty() {
       }
     });
     setCheckBox(finalValue);
+    setCount(r=>r=r+1);
   }, [getter]);
 
   function Delete(){
     const finalValue = CheckBox.filter(e=>{
         return e.uuid!==selectedCheckBox.uuid
-    })
+    });
     setCheckBox(finalValue);
+    DelCount(r=>r=r+1);
 };
 
   return (

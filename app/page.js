@@ -1,8 +1,8 @@
-import Image from "next/image";
-import Designer from "./components/designer";
+import dynamic from "next/dynamic";
 import Json from "./components/json";
 import Property from "./components/property";
 import Toolbar from "./components/toolbar";
+const Designer = dynamic(() => import("./components/designer"), {ssr: false});
 
 export default function Home() {
   return (

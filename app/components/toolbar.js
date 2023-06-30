@@ -19,7 +19,7 @@ function Toolbar() {
         color: "#e1e1e1",
         disabled: false,
         required: false,
-        focus: false
+        focus: false,
     }
 
     const initialCheckBox = {
@@ -34,7 +34,7 @@ function Toolbar() {
         disabled: false,
         radius: 'md',
         size: 'md',
-        focus: false
+        focus: false,
     };
 
     const addTextBox = useSetRecoilState(AddTextBox);

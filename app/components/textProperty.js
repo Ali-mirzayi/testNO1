@@ -1,13 +1,16 @@
 "use client"
 import { TextInput,Switch, ColorPicker } from '@mantine/core'
-import { useRecoilState } from "recoil";
-import { AddTextBox } from "../store";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { AddTextBox,PropertyCount,DeleteText } from "../store";
 import { useState,useEffect } from "react";
 
 export default function TextProperty() {
     const [TextBox, setTextBox] = useRecoilState(AddTextBox);
+    const setCount = useSetRecoilState(PropertyCount);
+    const DelCount = useSetRecoilState(DeleteText);
     const selectedTextBox = TextBox.filter((c)=>c.focus===true)[0];
     const [getter, setter] = useState(selectedTextBox);
+    
     var target = null;
 
     function mutaded(e,c) {
@@ -16,7 +19,7 @@ export default function TextProperty() {
             [c]: e
         })
     };
-
+    
     useEffect(()=>{
         const finalValue = TextBox.map((c)=>{
             if (c.uuid===getter.uuid){
@@ -24,15 +27,17 @@ export default function TextProperty() {
             }else{
                 return c;
             }
-        })
-        setTextBox(finalValue);
+        });
+        setTextBox([...finalValue]);
+        setCount(r=>r=r+1);
     },[getter]);
-    
+
     function Delete(){
         const finalValue = TextBox.filter(e=>{
             return e.uuid!==selectedTextBox.uuid
-        })
+        });
         setTextBox(finalValue);
+        DelCount(r=>r=r+1);
     };
 
   return (

@@ -13,6 +13,26 @@ const AddCheckBox = atom({
   default: [],
 });
 
+const PropertyCount = atom({
+  key: "PropertyCount",
+  default: 0,
+});
+
+const PropertyCheck = atom({
+  key: "PropertyCheck",
+  default: 0,
+});
+
+const DeleteCheck = atom({
+  key: "DeleteCheck",
+  default: 0,
+});
+
+const DeleteText = atom({
+  key: "DeleteText",
+  default: 0,
+});
+
 export default function Store({ children }) {
   return (
     <RecoilRoot>
@@ -23,4 +43,4 @@ export default function Store({ children }) {
   );
 }
 
-export { AddCheckBox, AddTextBox };
+export { AddCheckBox, AddTextBox, PropertyCount, PropertyCheck, DeleteCheck, DeleteText };

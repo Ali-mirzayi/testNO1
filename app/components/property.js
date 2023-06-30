@@ -1,7 +1,6 @@
 "use client";
-import { Divider } from "@mantine/core";
 import { useRecoilValue } from "recoil";
-import { AddTextBox,AddCheckBox } from "../store";
+import { AddTextBox,AddCheckBox, PropertyCount } from "../store";
 import TextProperty from "./textProperty";
 import CheckProperty from "./checkProperty";
 
