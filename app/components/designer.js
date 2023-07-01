@@ -105,7 +105,7 @@ function Designer() {
   }, [mergeObjects]);
 
   return (
-    <div style={{ height: "65%" }}>
+    <div className="designer">
       <h1 style={{backgroundColor:"#606461",color:"white",textAlign:"center"}}>Designer</h1>
       <div style={{display: "flex", flexWrap: "wrap",flexDirection: "row-reverse"}}>
         {mergeObjects !== [] ? 
@@ -113,7 +113,7 @@ function Designer() {
             <ul style={{display: "flex", flexWrap: "wrap",flexDirection: "row-reverse",width:"100%"}}>
                <SortableContext items={mergeObjects} strategy={rectSortingStrategy}>
                  {mergeObjects?.map((c,i)=>(
-                  <li key={i} style={{width:"50%"}}>
+                  <li key={i} className="list">
                     <Draggable c={c} i={i} handleChange={handleChange} handleFocus={handleFocus} handleDeleteText={handleDeleteText} />
                        </li>
                     ))}

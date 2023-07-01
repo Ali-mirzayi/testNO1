@@ -9,12 +9,16 @@ function Json() {
     const CheckBox= useRecoilValue(AddCheckBox);
     const TextBox= useRecoilValue(AddTextBox);
     const mergeObjects = [...TextBox,...CheckBox];
-    const typeSelected = mergeObjects.find(e=>e.focus===true)?.type;
-    const fallbackJson = {id: '0',uuid: 'undefined',name: '',className: '',value: '',label: '',disabled: false,required: false,focus: false};
 
-    return ( <div style={{height:"35%"}}>
+    console.log(mergeObjects);
+
+    //for selected items
+    // const typeSelected = mergeObjects.find(e=>e.focus===true)?.type;
+    const fallbackJson = [{id: '0',uuid: 'undefined',name: '',className: '',value: '',label: '',disabled: false,required: false,focus: false}];
+    // data={typeSelected==='textbox' ? TextBox.filter((c)=>c.focus===true)[0] : typeSelected==='checkbox' ? CheckBox.filter((c)=>c.focus===true)[0] : fallbackJson}
+    return ( <div>
         <h1 style={{backgroundColor:"#606461",color:"white",textAlign:"center"}}>JSON</h1>
-        <JsonView data={typeSelected==='textbox' ? TextBox.filter((c)=>c.focus===true)[0] : typeSelected==='checkbox' ? CheckBox.filter((c)=>c.focus===true)[0] : fallbackJson} shouldInitiallyExpand={(level) => true} style={defaultStyles} />
+        <JsonView data={!!mergeObjects[0] ? mergeObjects : fallbackJson} shouldInitiallyExpand={(level) => true} style={defaultStyles} />
     </div> );
 }
 

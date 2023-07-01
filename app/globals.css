@@ -8,6 +8,44 @@ body {
   overflow-x: hidden;
 }
 
+.flexMain{
+  display: flex;
+  flex-direction: column;
+}
+
+.toolContainer{
+  width: 100%;
+  height: 220px;
+  border: 1px solid #606461;
+}
+
+.designerContainer{
+  width: 100%;
+  height: 60vh;
+  border: 1px solid #606461;
+}
+
+.jsonContainer{
+  display: none;
+  height: 0;
+}
+
+.propertyMain{
+  width: 100%;
+  height: 100vh;
+  border: 1px solid #606461;
+}
+
+.designer{
+  height:100%;
+}
+
+.mobJson{
+  display: block;
+  min-height: 30vh;
+  width: 100%;
+}
+
 .btntools{
   background-color: #606461;
   color: white;
@@ -26,6 +64,8 @@ h1{
   pointer-events: unset;
 }
 
+.list{width: 100%;}
+
 .propertyContainer{
   border:1px solid #606461;
   display:flex;
@@ -37,4 +77,37 @@ h1{
   border-right:1px solid rgb(255, 255, 255);
   height:2.25rem;
   line-height:2.25rem;
+}
+
+@media only screen and (min-width: 600px) {
+  .flexMain{
+    flex-direction: row;
+  }
+  .toolContainer{
+    width: 10%;
+    height: 130vh;
+    border-bottom-width:0 ;
+  }  
+  .designerContainer{
+    width: 68%;
+    height: 130vh;
+    border-bottom-width:0 ;
+  }
+  .jsonContainer{
+    height: 35%;
+    display: unset;
+  }
+  .propertyMain{
+    width: 22%;
+    height:130vh;
+    border-bottom-width:0 ;
+  }
+  .designer{
+    height:65%;
+  }
+  .mobJson{
+    display: none;
+    height: 0;
+  }
+  .list{width: 50%;}
 }

@@ -6,25 +6,22 @@ const Designer = dynamic(() => import("./components/designer"), {ssr: false});
 
 export default function Home() {
   return (
-    <main>
-      <div className="flex">
-        <div
-          style={{ border: "1px solid #606461", width: "10%", height: "130vh" }}
-        >
+    <main className="flexMain">
+        <div className="toolContainer">
           <Toolbar />
         </div>
-        <div
-          style={{ border: "1px solid #606461", width: "68%", height: "130vh" }}
-        >
+        <div className="designerContainer">
           <Designer />
-          <Json />
+          <div className="jsonContainer">
+             <Json />
+          </div>
         </div>
-        <div
-          style={{ border: "1px solid #606461", width: "22%", height: "130vh" }}
-        >
+        <div className="propertyMain">
           <Property />
         </div>
-      </div>
+        <div className="mobJson">
+             <Json />
+        </div>
     </main>
   );
 }
